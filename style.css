@@ -48,3 +48,49 @@ section {
     padding: 10px;
     border-radius: 5px;
 }
+/* Các kiểu hiện tại của bạn vẫn giữ nguyên */
+
+/* Sub-Tabs Navigation */
+.sub-tabs ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+    display: flex;
+    border-bottom: 2px solid #ccc;
+}
+
+.sub-tabs ul li {
+    margin-right: 15px;
+}
+
+.sub-tabs ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid transparent;
+    border-bottom: none;
+}
+
+.sub-tabs ul li a:hover, .sub-tabs ul li a.active {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-bottom: 2px solid white;
+    border-radius: 5px 5px 0 0;
+}
+
+/* Sub-Tabs Content */
+.sub-tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+    border-radius: 0 5px 5px 5px;
+    margin-bottom: 20px;
+}
+
+/* Hiển thị sub-tab đầu tiên theo mặc định */
+#labs1 {
+    display: block;
+}

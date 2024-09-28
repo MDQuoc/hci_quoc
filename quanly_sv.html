@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sinh Viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Quản Lý Sinh Viên</h1>
+    </header>
+
+    <section>
+        <h2>Thêm Sinh Viên</h2>
+        <form id="studentForm">
+            <label for="studentName">Tên Sinh Viên:</label>
+            <input type="text" id="studentName" name="studentName" required>
+            <br><br>
+            <label for="studentID">Mã Sinh Viên:</label>
+            <input type="text" id="studentID" name="studentID" required>
+            <br><br>
+            <input type="submit" value="Thêm Sinh Viên">
+        </form>
+    </section>
+
+    <section>
+        <h2>Danh Sách Sinh Viên</h2>
+        <input type="text" id="searchStudent" placeholder="Tìm kiếm sinh viên..." oninput="searchStudent()">
+        <ul id="studentList"></ul>
+    </section>
+
+    <script>
+        const students = [];
+
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const studentName = document.getElementById('studentName').value;
+            const studentID = document.getElementById('studentID').value;
+
+            students.push({ name: studentName, id: studentID });
+            displayStudents();
+            document.getElementById('studentForm').reset();
+        });
+
+        function displayStudents() {
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = '';
+
+            students.forEach((student, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${student.name} (ID: ${student.id})`;
+                
+                const editBtn = document.createElement('button');
+                editBtn.textContent = 'Sửa';
+                editBtn.onclick = () => editStudent(index);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Xóa';
+                deleteBtn.onclick = () => deleteStudent(index);
+
+                listItem.appendChild(editBtn);
+                listItem.appendChild(deleteBtn);
+                studentList.appendChild(listItem);
+            });
+        }
+
+        function editStudent(index) {
+            const student = students[index];
+            document.getElementById('studentName').value = student.name;
+            document.getElementById('studentID').value = student.id;
+            deleteStudent(index);  // Xóa trước khi cập nhật
+        }
+
+        function deleteStudent(index) {
+            students.splice(index, 1);
+            displayStudents();
+        }
+
+        function searchStudent() {
+            const query = document.getElementById('searchStudent').value.toLowerCase();
+            const filteredStudents = students.filter(student => 
+                student.name.toLowerCase().includes(query) || 
+                student.id.toLowerCase().includes(query)
+            );
+            const studentList = document.getElementById('studentList');
+            studentList.innerHTML = '';
+            filteredStudents.forEach((student, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${student.name} (ID: ${student.id})`;
+                studentList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
