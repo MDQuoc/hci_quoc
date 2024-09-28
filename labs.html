@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Học Sinh - Labs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Quản Lý Học Sinh</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./labs.html">Labs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Labs</h2>
+        <form id="subjectForm">
+            <label for="subjectName">Tên Môn Học:</label>
+            <input type="text" id="subjectName" name="subjectName" required>
+            <input type="submit" value="Upload Môn Học">
+        </form>
+        <div id="subjectList">
+            <h3>Danh Sách Môn Học</h3>
+            <ul id="subjects"></ul>
+        </div>
+    </section>
+
+    <script src="sccript.js"></script>
+</body>
+</html>
